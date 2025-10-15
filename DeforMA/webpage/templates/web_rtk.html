@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DeforMA RTK Viewer</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; }
+    .panel { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .card h3 { margin: 0 0 8px 0; font-size: 16px; }
+    #plots { margin-top: 18px; }
+    .plot { width: 100%; height: 380px; margin-bottom: 24px; }
+    .baseline-list { max-height: 220px; overflow: auto; min-width: 220px; }
+    .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    label { font-weight: 600; margin-right: 6px; }
+    select { padding: 6px 8px; }
+    button { padding: 8px 12px; font-weight: 600; cursor: pointer; }
+    .dim { color:#666; font-size:12px; }
+  </style>
+</head>
+<body>
+  <h1>DeforMA RTK — Baseline Time Series</h1>
+
+  <div class="panel">
+    <div class="card">
+      <h3>Window & Rate</h3>
+      <div class="row">
+        <label for="windowSel">Window</label>
+        <select id="windowSel">
+          <option value="day" selected>Last Day</option>
+          <option value="week">Last Week</option>
+          <option value="month">Last Month</option>
+        </select>
+        <label for="rateSel">Rate</label>
+        <select id="rateSel">
+          <option value="1min" selected>1 minute</option>
+          <option value="10min">10 minutes</option>
+          <option value="1hour">1 hour</option>
+        </select>
+        <button id="refreshBtn">Refresh</button>
+      </div>
+      <div class="dim">Normalized to first available sample per baseline (0 at start).</div>
+    </div>
+
+    <div class="card">
+      <h3>Baselines</h3>
+      <div id="baselineBox" class="baseline-list"></div>
+      <div class="row" style="margin-top:8px">
+        <button id="checkAllBtn">Check all</button>
+        <button id="uncheckAllBtn">Uncheck all</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="plots">
+    <div id="plotE" class="plot"></div>
+    <div id="plotN" class="plot"></div>
+    <div id="plotU" class="plot"></div>
+  </div>
+
+  <script>
+    const plotIds = { E: 'plotE', N: 'plotN', U: 'plotU' };
+
+    async function fetchJSON(url) {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+      return r.json();
+    }
+
+    function checkbox(id, label, checked=true) {
+      const wrap = document.createElement('div');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.id = id; cb.value = label; cb.checked = checked;
+      const lb = document.createElement('label'); lb.htmlFor = id; lb.textContent = label;
+      wrap.appendChild(cb); wrap.appendChild(lb);
+      return wrap;
+    }
+
+    async function loadBaselines() {
+      const box = document.getElementById('baselineBox');
+      box.innerHTML = '(loading…)';
+      try {
+        const list = await fetchJSON('/api/baselines');
+        box.innerHTML = '';
+        if (!Array.isArray(list) || list.length === 0) {
+          box.textContent = '(none found)';
+          return;
+        }
+        list.forEach((b, i) => box.appendChild(checkbox('bl_'+i, b, true)));
+      } catch (e) {
+        box.textContent = 'Error loading baselines';
+        console.error(e);
+      }
+    }
+
+    function selectedBaselines() {
+      const box = document.getElementById('baselineBox');
+      const cbs = box.querySelectorAll('input[type=checkbox]');
+      return Array.from(cbs).filter(cb => cb.checked).map(cb => cb.value);
+    }
+
+    function emptyPlots() {
+      const layoutBase = (title) => ({
+        title: title,
+        xaxis: { type: 'date', showgrid: true, gridcolor: '#eee' },
+        yaxis: { zeroline: true, showgrid: true, gridcolor: '#eee' },
+        legend: { orientation: 'h' },
+        margin: { l: 60, r: 20, t: 40, b: 40 }
+      });
+      Plotly.newPlot(plotIds.E, [], layoutBase('East (m)'));
+      Plotly.newPlot(plotIds.N, [], layoutBase('North (m)'));
+      Plotly.newPlot(plotIds.U, [], layoutBase('Up (m)'));
+    }
+
+    async function refreshPlots() {
+      const win = document.getElementById('windowSel').value;
+      const rate = document.getElementById('rateSel').value;
+      const bases = selectedBaselines();
+      emptyPlots();
+
+      if (bases.length === 0) return;
+
+      const tracesE = [];
+      const tracesN = [];
+      const tracesU = [];
+
+      for (const base of bases) {
+        try {
+          const url = `/api/series?baseline=${encodeURIComponent(base)}&window=${encodeURIComponent(win)}&rate=${encodeURIComponent(rate)}&normalize=1`;
+          const data = await fetchJSON(url);
+          const t = data.t || [];
+          if (t.length === 0) continue;
+
+          tracesE.push({ x: t, y: data.e || [], mode: 'lines+markers', name: base, marker: { size: 4 } });
+          tracesN.push({ x: t, y: data.n || [], mode: 'lines+markers', name: base, marker: { size: 4 } });
+          tracesU.push({ x: t, y: data.u || [], mode: 'lines+markers', name: base, marker: { size: 4 } });
+        } catch (e) {
+          console.warn('Failed to load', base, e);
+        }
+      }
+
+      const updateLayout = (pid, title) => {
+        const layout = {
+          title: title,
+          xaxis: { type: 'date', showgrid: true, gridcolor: '#eee' },
+          yaxis: { zeroline: true, showgrid: true, gridcolor: '#eee' },
+          legend: { orientation: 'h' },
+          margin: { l: 60, r: 20, t: 40, b: 40 }
+        };
+        Plotly.react(pid, (pid===plotIds.E?tracesE:pid===plotIds.N?tracesN:tracesU), layout, {displayModeBar: true});
+      };
+
+      updateLayout(plotIds.E, `East (m) — ${win}, ${rate}`);
+      updateLayout(plotIds.N, `North (m) — ${win}, ${rate}`);
+      updateLayout(plotIds.U, `Up (m) — ${win}, ${rate}`);
+    }
+
+    // Buttons
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadBaselines();
+      emptyPlots();
+      await refreshPlots();
+    });
+    document.getElementById('refreshBtn').addEventListener('click', refreshPlots);
+    document.getElementById('checkAllBtn').addEventListener('click', () => {
+      document.querySelectorAll('#baselineBox input[type=checkbox]').forEach(cb => cb.checked = true);
+      refreshPlots();
+    });
+    document.getElementById('uncheckAllBtn').addEventListener('click', () => {
+      document.querySelectorAll('#baselineBox input[type=checkbox]').forEach(cb => cb.checked = false);
+      refreshPlots();
+    });
+  </script>
+</body>
+</html>
+

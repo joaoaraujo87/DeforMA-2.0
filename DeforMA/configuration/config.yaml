@@ -1,0 +1,78 @@
+# ============================================================
+# DeforMA System Configuration
+# ============================================================
+version: 1
+
+# Root of the installation
+main: "/opt/DeforMA"
+
+# -------- Paths (resolved from `main`) --------
+paths:
+  configuration: "${main}/configuration"   # configuration files
+  external:      "${main}/external"        # external tools/scripts
+  source:        "${main}/source"          # main scripts
+  output:        "${main}/output"          # default outputs (if not using workpool)
+  documentation: "${main}/documentation"
+  install:       "${main}/install"
+  database:      "${main}/database"   # system DB folder (fixed system location)
+
+# -------- Databases --------
+database:
+  # Core (system) database with only NEU time-series (used as clean baseline)
+  core: "${paths.database}/DeforMA.core.db"
+
+# -------- User workspace (per-user area under HOME) --------
+user_workspace:
+  root:     "${HOME}/DeforMA"
+  database: "${user_workspace.root}/database/DeforMA.db"
+  workpool: "${user_workspace.root}/workpool"
+  logs:     "${user_workspace.root}/workpool/logs"
+  help:     "${user_workspace.root}/help"
+  metadata: "${user_workspace.root}/metadata"     # <— NEW
+
+# -------- External data directories (local mounts/shares) --------
+externals:
+  bernese:     "/media/monitoring2/201_RP_GPS#2/20103_Process/Bernese/"
+  monitoring:  "/media/monitoring2/201_RP_GPS#2"
+  survey:      "/media/monitoring2/202_RT_GPS#2"
+  spider:      "/media/spider/Data/Observation"
+  webservices: "/media/webservices"
+  datapool:    "~/GPSDATA/DATAPOOL"
+  campaign:    "~/GPSDATA/CAMPAIGN54"
+  bern54:      "/opt/BERN54"
+
+# -------- FTP endpoints --------
+ftp:
+  IGS:
+    - "ftp://gssc.esa.int/gnss/data/daily"
+    - "ftp://garner.ucsd.edu/pub/rinex"
+  CODE: "ftp://ftp.aiub.unibe.ch/CODE/"
+
+# -------- Config files --------
+files:
+  stations:        "${user_workspace.metadata}/stations.yaml"
+  stations_teqc:   "${user_workspace.metadata}/teqc.yaml"
+  events:          "${user_workspace.metadata}/events.yaml"
+  stable:          "${user_workspace.metadata}/stable.yaml"
+  trend:           "${user_workspace.metadata}/trend.yaml"
+  sinex_root:      "${externals.monitoring}/20103_Process/Bernese"
+
+  # Which reference frames to traverse
+  sinex_frames:
+    - "IGB08"
+    - "IGS14"
+    - "IGS20"
+
+  sinex_sol_dir: "SOL"  # SINEX files
+  sinex_out_dir: "OUT"  # covariance files
+
+  # File patterns
+  sinex_sol_pattern: "*.SNX.gz"   
+  sinex_cov_pattern: "*COV"      
+
+
+# -------- Processing options --------
+options:
+  teqc_opts: "-O.dec 30"
+  rinex_compression: "gzip -f"
+
