@@ -1,0 +1,279 @@
+# events.yaml
+version: 1
+units:
+  offsets: "mm"        # N/E/U offsets are in millimeters
+  dates: "YYYY-MM-DD"
+
+events:
+  # Reference frame steps (apply to all stations)
+  - id: IG14
+    flag: R                 # R=Reference-frame, E=Equipment, D=Deformation (your current codes)
+    type: reference_frame
+    description: "Reference frame change IG14"
+    date: 2017-01-29
+    stations: ["ALL"]
+    offsets: { N: 0.0, E: -5.0, U: 0.0 }
+    source: MANUAL
+
+  - id: IG20
+    flag: R
+    type: reference_frame
+    description: "Reference frame change IG20"
+    date: 2020-05-16
+    stations: ["ALL"]
+    offsets: { N: 0.0, E: -5.0, U: -10.0 }
+    source: MANUAL
+
+  # Per-station equipment/deformation
+  - id: PDEL_2006-11-26_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2006-11-26
+    stations: ["PDEL"]
+    offsets: { N: 6.91, E: 1.35, U: 1.82 }
+    source: FODITS
+    
+  - id: PDEL_2008-04-06_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2008-04-06
+    stations: ["PDEL"]
+    offsets: { N: 3.10, E: 1.47, U: 10.96 }
+    source: FODITS
+    
+  - id: PDEL_2012-10-17_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2012-10-17
+    stations: ["PDEL"]
+    offsets: { N: -4.60, E: -4.39, U: -2.08 }
+    source: FODITS
+
+  - id: PDEL_2021-01-01_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2021-01-01
+    stations: ["PDEL"]
+    offsets: { N: 0.00, E: 0.00, U: 10.00 }
+    source: MANUAL
+
+  - id: PDEL_2021-10-15_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2021-10-15
+    stations: ["PDEL"]
+    offsets: { N: -3.00, E: 10.00, U: -80.00 }
+    source: MANUAL
+    
+  - id: PDEL_2022-11-11_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at PDEL"
+    date: 2022-11-11
+    stations: ["PDEL"]
+    offsets: { N: -1.98, E: 4.35, U: -75.61 }
+    source: FODITS
+
+  - id: BVF1_2005-07-31_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BVF1"
+    date: 2005-07-31
+    stations: ["BVF1"]
+    offsets: { N: -37.92, E: -5.04, U: 6.99 }
+    source: FODITS
+
+  - id: BVF1_2011-08-21_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BVF1"
+    date: 2011-08-21
+    stations: ["BVF1"]
+    offsets: { N: -8.96, E: -1.32, U: 6.62 }
+    source: FODITS
+    
+  - id: BVF1_2018-04-21_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BVF1"
+    date: 2018-04-21
+    stations: ["BVF1"]
+    offsets: { N: -10.03, E: -1.72, U: 2.22 }
+    source: FODITS
+
+  - id: BVF1_2018-11-23_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BVF1"
+    date: 2018-11-23
+    stations: ["BVF1"]
+    offsets: { N: -17.26, E: 0.92, U: 8.47 }
+    source: FODITS
+
+  - id: VFDC_2018-09-28_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at VFDC"
+    date: 2018-09-28
+    stations: ["VFDC"]
+    offsets: { N: -23.82, E: 1.87, U: 6.35 }
+    source: FODITS
+
+  - id: MESC_2023-08-28_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at MESC"
+    date: 2023-08-28
+    stations: ["MESC"]
+    offsets: { N: -23.92, E: -2.25, U: -1.44 }
+    source: FODITS
+    
+  - id: FRNS_2018-11-28_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at FRNS"
+    date: 2018-11-28
+    stations: ["FRNS"]
+    offsets: { N: 2.12, E: 5.54, U: 6.20 }
+    source: FODITS
+
+  - id: FRNS_2024-12-12_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at FRNS"
+    date: 2024-12-12
+    stations: ["FRNS"]
+    offsets: { N: -5.68, E: 5.73, U: 28.00 }
+    source: FODITS
+
+  - id: LOM1_2019-01-10_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at LOM1"
+    date: 2024-12-12
+    stations: ["LOM1"]
+    offsets: { N: 10.38, E: 6.45, U: 1.61 }
+    source: FODITS
+
+  - id: QBN1_2003-07-12_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at QBN1"
+    date: 2003-07-12
+    stations: ["QBN1"]
+    offsets: { N: -11.82, E: 1.16, U: 0.73 }
+    source: FODITS
+
+  - id: QBN1_2024-09-29_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at QBN1"
+    date: 2024-09-29
+    stations: ["QBN1"]
+    offsets: { N: -12.87, E: 1.04, U: -5.74 }
+    source: FODITS
+    
+  - id: FLRS_2021-10-20_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at FLRS"
+    date: 2021-10-20
+    stations: ["FLRS"]
+    offsets: { N: -2.24, E: 4.41, U: -74.94 }
+    source: FODITS
+    
+  - id: AZGR_2009-05-30_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at AZGR"
+    date: 2009-05-30
+    stations: ["AZGR"]
+    offsets: { N: 1.73, E: 3.17, U: 6.29 }
+    source: FODITS
+    
+  - id: AZGR_2015-06-25_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at AZGR"
+    date: 2015-06-25
+    stations: ["AZGR"]
+    offsets: { N: 0.52, E: 2.14, U: 12.68 }
+    source: FODITS
+
+  - id: AZGR_2022-01-05_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at AZGR"
+    date: 2022-01-05
+    stations: ["AZGR"]
+    offsets: { N: 4.99, E: 4.47, U: 19.92 }
+    source: FODITS
+
+  - id: QEMD_2022-05-07_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at QEMD"
+    date: 2022-05-07
+    stations: ["QEMD"]
+    offsets: { N: -2.46, E: 13.94, U: -0.37 }
+    source: FODITS
+
+  - id: PIED_2022-04-18_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at PIED"
+    date: 2022-04-18
+    stations: ["PIED"]
+    offsets: { N: -23.90, E: 13.47, U: 8.25 }
+    source: FODITS
+
+  - id: AZTP_2022-06-02_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at AZTP"
+    date: 2022-06-02
+    stations: ["AZTP"]
+    offsets: { N: -15.93, E: -2.69, U: 5.97 }
+    source: FODITS
+
+  - id: BSRP_2022-03-17_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BSRP"
+    date: 2022-03-17
+    stations: ["BSRP"]
+    offsets: { N: -20.49, E: -5.83, U: 11.79 }
+    source: FODITS
+    
+  - id: HORT_2022-05-07_DEF
+    flag: D
+    type: deformation
+    description: "Deformation step at BSRP"
+    date: 2022-05-07
+    stations: ["HORT"]
+    offsets: { N: -4.82, E: 9.76, U: 3.45 }
+    source: FODITS    
+    
+  - id: AZSM_2020-03-05_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at AZSM"
+    date: 2020-03-05
+    stations: ["AZSM"]
+    offsets: { N: 3.09, E: -3.05, U: -5.80 }
+    source: FODITS      
+
+  - id: AZSM_2021-01-19_EQ
+    flag: E
+    type: equipment
+    description: "Equipment change at AZSM"
+    date: 2021-01-19
+    stations: ["AZSM"]
+    offsets: { N: -2.79, E: 1.90, U: 7.85 }
+    source: FODITS 
+

@@ -1,0 +1,48 @@
+# stations_teqc.yaml
+
+AZGR:
+  "-O.r":  "AutoProc"
+  "-O.ag": "SRCTE"
+  "-O.o":  "DSCIG"
+  "-O.mo": "AZGR"
+  "-O.rt": "TRIMBLE NETR9"
+  "-O.at": "TRM55971.00     NONE"
+
+BVF1:
+  "-O.r":  "AutoProc"
+  "-O.ag": "CIVISA"
+  "-O.o":  "DSCIG"
+  "-O.at": "TRM29659.00     NONE"
+
+FLRS:
+  "-O.r":  "AutoProc"
+  "-O.ag": "SRCTE"
+  "-O.o":  "DSCIG"
+  "-O.mo": "FLRS"
+  "-O.rt": "TRIMBLE ALLOY"
+  "-O.at": "TRM159900.00    NONE"
+
+PIED:
+  "-O.r":  "AutoProc"
+  "-O.ag": "SRCTE"
+  "-O.o":  "DSCIG"
+  "-O.mo": "PIED"
+  "-O.rt": "TRIMBLE NETRS"
+  "-O.at": "TRM41249.00     TZGD"
+
+AZTP:
+  "-O.r":  "AutoProc"
+  "-O.ag": "SRCTE"
+  "-O.o":  "DSCIG"
+  "-O.mo": "AZTP"
+  "-O.rt": "LEICA GRX1200GGPRO"
+  "-O.at": "LEIAT504GG      LEIS"
+  
+
+PDEL:
+  "-O.r":  "AutoProc"
+  "-O.ag": "SRCTE"
+  "-O.o":  "DSCIG"
+  "-O.mo": "PDEL"
+  "-O.at": "TRM159900.00    NONE"
+

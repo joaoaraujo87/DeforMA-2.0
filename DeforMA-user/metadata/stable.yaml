@@ -1,0 +1,271 @@
+# stable.yaml
+version: 1
+units:
+  velocities: "mm/yr"   # M1 N/E/U, and CN/CE/CU corrections
+  dates: "YYYY-MM-DD"
+
+stations:
+  PDEL:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.58, E: 15.65, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  BGIN:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.57, E: 15.59, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  BRIB:
+    method: M1
+    plate: "EU/NU"
+    model: ITRF2020
+    velocities: { N: 15.60, E: 15.65, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  CATP:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.59, E: 15.66, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  BVF1:
+    method: M2
+    plate: "EU/NU"
+    reference_window: { start: 2012-06-01, end: 2017-01-01 }
+    
+  VFDC:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.60, E: 15.69, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }    
+    
+  MESC:
+    method: M1
+    plate: "EU/NU"
+    model: ITRF2020
+    velocities: { N: 15.60, E: 15.67, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }      
+    
+  FRNS:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.61, E: 15.70, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }       
+    
+  LOM1:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.61, E: 15.67, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }         
+    
+  QBN1:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.62, E: 15.70, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }     
+    
+  AZSM:
+    method: M1
+    plate: "NU"
+    model: ITRF2020
+    velocities: { N: 15.18, E: 11.62, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }        
+    
+  RAEG:
+    method: M1
+    plate: "NU"
+    model: ITRF2020
+    velocities: { N: 15.18, E: 11.62, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }   
+
+  BPRA:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.47, E: 15.10, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }  
+
+  NOV1:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.46, E: 15.07, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }  
+
+  TERC:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.46, E: 15.09, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }  
+
+  SRPC:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.45, E: 15.10, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  GTM3:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.45, E: 15.07, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  PBIS:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.45, E: 15.06, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  ALTA:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.45, E: 15.05, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
+  PPAD:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.45, E: 15.07, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }    
+    
+  CISB:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.44, E: 15.06, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }       
+    
+  SBAR:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.44, E: 15.06, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }       
+    
+  SERR:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.44, E: 15.04, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }        
+    
+  AZGR:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.38, E: 14.85, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }     
+
+  ENAO:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.38, E: 14.85, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 } 
+
+  QEMD:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.36, E: 14.92, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  ESOL:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.36, E: 14.91, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  NTGR:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.37, E: 14.95, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  URZL:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.37, E: 14.95, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  CRNR:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.37, E: 14.96, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  TLDO:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.37, E: 14.93, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  TOPO:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.41, E: 15.04, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+
+  HORT:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.33, E: 14.90, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
+  JFPN:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.31, E: 14.86, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }    
+    
+  BSRP:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.36, E: 14.96, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
+  AZTP:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.35, E: 14.98, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
+  AZTP:
+    method: M1
+    plate: "EU"
+    model: ITRF2020
+    velocities: { N: 15.38, E: 15.04, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
+  FLRS:
+    method: M1
+    plate: "NA"
+    model: ITRF2020
+    velocities: { N: 16.89, E: -9.83, U: 0.0 }
+    corrections: { CN: 0.0, CE: 0.0, CU: 0.0 }
+    
